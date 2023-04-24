@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-*(9@j88^o@x=)&ph91!f6j)zrkj$a20e1j!7q%zgldtn!ovo4@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+TEMPLATE_DEBUG = DEBUG
+
 ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 
 
@@ -34,6 +36,7 @@ ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 INSTALLED_APPS = [
     'accounts',
     'django.contrib.admin',
+    # 'modeltranslation',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -72,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.app'
+WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 # Database
@@ -110,9 +113,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'uz-uz'
 
-LOCALE_PATHS = [
-    BASE_DIR/'locale'
-]
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = False
 
 LANGUAGES = [
     ('uz', _('Uzbek')),
@@ -123,6 +128,7 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
 
 MODELTRANSLATION_LANGUAGES = ('uz', 'en', 'ru')
 
+TRANSLATABLE_MODEL_MODULES = ["blog.models", "accounts.models"]
 
 TIME_ZONE = 'Asia/Tashkent'
 
