@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.http import HttpResponse
