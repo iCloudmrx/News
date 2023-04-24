@@ -1,0 +1,131 @@
+{% extends 'blog/post/pages/single_base.html' %}
+<!---->
+{% block title %} Texnologiya {% endblock title%}<!---->
+{% block single_page %}
+<ol class="breadcrumb">
+    <li><a href="{%url 'blog:post_index'%}">Home</a></li>
+    <li><a href="#">{{post.category.name}}</a></li>
+    <li class="active">Xabar</li>
+</ol>
+<h1>{{post.title}}</h1>
+<div class="post_commentbox">
+    <a href="#"><i class="fa fa-user"></i>Wpfreeware</a>
+    <span><i class="fa fa-calendar"></i>{{post.created}}</span>
+    <a href="#"><i class="fa fa-tags"></i>{{post.category.name}}</a>
+    <span>
+        <i class="fa fa-eye" aria-hidden="true"> {%get_hit_count for post%}</i>
+    </span>
+    <span> | izohlar soni: {{comment_count}} </span>
+</div>
+<div class="single_page_content">
+    <img class="img-center" src="{{post.image.url}}" alt="" />
+    <p>{{post.title}}</p>
+    <blockquote>{{post.body}}</blockquote>
+    <br />
+
+    <section style="background-color: #ad655f">
+        <div class="container my-5 py-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="card text-dark">
+                        <div class="card-body p-4">
+                            <h4 class="mb-0">Eng so'ngi izohlar</h4>
+                            <p class="fw-light mb-4 pb-2">Foydalanuvchi tomdan yozilgan eng so'ngi izohlar</p>
+                            <span> | izohlar soni: {{comment_count}} </span>
+
+                            {% for comment in comments %}
+                            <div class="d-flex flex-start">
+                                {% if comment.user.profile.photo.url%}
+                                <div class="text-center">
+                                    <img
+                                        src="{{comment.user.profile.photo.url}}"
+                                        class="rounded-circle shadow-1-strong me-3"
+                                        alt="avatar"
+                                        width="60"
+                                        height="60"
+                                    />
+                                </div>
+                                {% else %}
+                                <img
+                                    class="rounded-circle shadow-1-strong me-3"
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp"
+                                    alt="avatar"
+                                    width="60"
+                                    height="60"
+                                />
+                                {%endif%}
+                                <div>
+                                    <h6 class="fw-bold mb-1">{{comment.user.first_name}} {{comment.user.last_name}}</h6>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <p class="mb-0">
+                                            {{comment.created_time}}
+                                            <span class="badge bg-primary">Pending</span>
+                                        </p>
+                                        <a href="#!" class="link-muted"><i class="fas fa-pencil-alt ms-2"></i></a>
+                                        <a href="#!" class="link-muted"><i class="fas fa-redo-alt ms-2"></i></a>
+                                        <a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a>
+                                    </div>
+                                    <p class="mb-0">{{comment.body}}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <hr class="my-0" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        {% if request.user.is_authenticated %}
+        <div class="wrapper">
+            <h2>Izoh yozish</h2>
+            <form action="" method="POST" novalidate enctype="multipart/form-data">
+                {% csrf_token %} {{comment_form.as_p}}
+                <div class="input-box button">
+                    <input type="submit" value="Izoh qo'shish" />
+                </div>
+            </form>
+        </div>
+        {% endif %}
+    </section>
+</div>
+<div class="social_link">
+    <ul class="sociallink_nav">
+        <li>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-google-plus"></i></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-pinterest"></i></a>
+        </li>
+    </ul>
+</div>
+<div class="related_post">
+    <h2>So'ngi yangiliklar<i class="fa fa-thumbs-o-up"></i></h2>
+    <ul class="spost_nav wow fadeInDown animated">
+        {% for post in posts %}
+        <li>
+            <div class="media">
+                <a class="media-left" href="{{post.get_absolute_url}}">
+                    <img src="{{post.image.url}}" alt="" />
+                </a>
+                <div class="media-body">
+                    <a class="catg_title" href="{{post.get_absolute_url}}"> {{post.title}}</a>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock single_page %}

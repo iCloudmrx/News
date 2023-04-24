@@ -1,2 +1,2 @@
-# News
-men xabar.uz sayt o'xshab sayt yasab ko'rdim
+# FirstPorfile
+men birnchi porfile tayorlayapman bunda faqat backend qismni qilaman holos

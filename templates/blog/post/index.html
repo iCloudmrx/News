@@ -1,0 +1,438 @@
+{% extends 'blog/base.html' %} {% load hitcount_tags %} {% block title %} Home {% endblock title%}<!---->
+{% block content %}
+<section id="sliderSection">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="slick_slider">
+                {% for post in last_posts %}
+                <div class="single_iteam">
+                    <a href="{{post.get_absolute_url}}"> <img src="{{post.image.url}}" alt="" /></a>
+                    <div class="slider_article">
+                        <h2>
+                            <a class="slider_tittle" href="{{post.get_absolute_url}}">{{post.title|truncatewords:5}}</a>
+                        </h2>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="latest_post">
+                <h2><span>So'ngi yangiliklar</span></h2>
+                <div class="latest_post_container">
+                    <div id="prev-button">
+                        <i class="fa fa-chevron-up"></i>
+                    </div>
+                    <ul class="latest_postnav">
+                        {% for post in last_posts %}
+                        <li>
+                            <div class="media">
+                                <a href="{{post.get_absolute_url}}" class="media-left">
+                                    <img alt="" src="{{post.image.url}}" />
+                                </a>
+                                <div class="media-body">
+                                    <a href="{{post.get_absolute_url}}" class="catg_title"> {{post.title}}</a><br />
+                                    <span
+                                        >Ko'rilganlar soni:
+                                        <i class="fa fa-eye" aria-hidden="true"> {%get_hit_count for post%}</i>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div id="next-button">
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contentSection">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="left_content">
+                <div class="single_post_content">
+                    <h2><span>Mahalliy</span></h2>
+                    <div class="single_post_content_left">
+                        <ul class="business_catgnav wow fadeInDown">
+                            <li>
+                                <figure class="bsbig_fig">
+                                    <a href="{{local_post.get_absolute_url}}" class="featured_img">
+                                        <img alt="" src="{{local_post.image.url}}" />
+                                        <span class="overlay"></span>
+                                    </a>
+                                    <figcaption>
+                                        <a href="{{local_post.get_absolute_url}}">{{local_post.title}}</a>
+                                    </figcaption>
+                                    <p>{{local_post.body|truncatewords:50}}</p>
+                                    <br />
+                                </figure>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="single_post_content_right">
+                        <ul class="spost_nav">
+                            {% for post in local_posts %}
+                            <li>
+                                <div class="media wow fadeInDown">
+                                    <a href="{{post.get_absolute_url}}" class="media-left">
+                                        <img alt="" src="{{post.image.url}}" />
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="{{post.get_absolute_url}}" class="catg_title"> {{post.title}}</a>
+                                        <br />
+                                        <span
+                                            >Ko'rilganlar soni:
+                                            <i class="fa fa-eye" aria-hidden="true"> {%get_hit_count for post%}</i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="fashion_technology_area">
+                    <div class="fashion">
+                        <div class="single_post_content">
+                            <h2><span>Sport</span></h2>
+                            <ul class="business_catgnav wow fadeInDown">
+                                <li>
+                                    <figure class="bsbig_fig">
+                                        <a href="{{sport_post.get_absolute_url}}" class="featured_img">
+                                            <img alt="" src="{{sport_post.image.url}}" />
+                                            <span class="overlay"></span>
+                                        </a>
+                                        <figcaption>
+                                            <a href="{{sport_post.get_absolute_url}}">{{sport_post.title}}</a>
+                                        </figcaption>
+                                        <p>{{sport_post.body|truncatewords:50}}</p>
+                                    </figure>
+                                </li>
+                            </ul>
+                            <ul class="spost_nav">
+                                {% for post in sport_posts %}
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="{{post.get_absolute_url}}" class="media-left">
+                                            <img alt="" src="{{post.image.url}}" />
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="{{post.get_absolute_url}}" class="catg_title"> {{post.title}}</a>
+                                            <br />
+                                            <span
+                                                >Ko'rilganlar soni:
+                                                <i class="fa fa-eye" aria-hidden="true"> {%get_hit_count for post%}</i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="technology">
+                        <div class="single_post_content">
+                            <h2><span>Texnologiya</span></h2>
+                            <ul class="business_catgnav">
+                                <li>
+                                    <figure class="bsbig_fig wow fadeInDown">
+                                        <a href="{{tex_post.get_absolute_url}}" class="featured_img">
+                                            <img alt="" src="{{tex_post.image.url}}" />
+                                            <span class="overlay"></span>
+                                        </a>
+                                        <figcaption>
+                                            <a href="{{tex_post.get_absolute_url}}">{{tex_post.title}}</a>
+                                        </figcaption>
+                                        <p>{{tex_post.body|truncatewords:50}}</p>
+                                    </figure>
+                                </li>
+                            </ul>
+                            <ul class="spost_nav">
+                                {% for post in tex_posts %}
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="{{post.get_absolute_url}}" class="media-left">
+                                            <img alt="" src="{{post.image.url}}" />
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="{{post.get_absolute_url}}" class="catg_title"> {{post.title}}</a>
+                                            <br />
+                                            <span
+                                                >Ko'rilganlar soni:
+                                                <i class="fa fa-eye" aria-hidden="true"> {%get_hit_count for post%}</i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="single_post_content">
+                    <h2><span>Photography</span></h2>
+                    <ul class="photograph_nav wow fadeInDown">
+                        <li>
+                            <div class="photo_grid">
+                                <figure class="effect-layla">
+                                    <a
+                                        class="fancybox-buttons"
+                                        data-fancybox-group="button"
+                                        href="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img2.jpg"
+                                        title="Photography Ttile 1"
+                                    >
+                                        <img
+                                            src="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img2.jpg"
+                                            alt=""
+                                    /></a>
+                                </figure>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="photo_grid">
+                                <figure class="effect-layla">
+                                    <a
+                                        class="fancybox-buttons"
+                                        data-fancybox-group="button"
+                                        href="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img3.jpg"
+                                        title="Photography Ttile 2"
+                                    >
+                                        <img
+                                            src="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img3.jpg"
+                                            alt=""
+                                        />
+                                    </a>
+                                </figure>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="photo_grid">
+                                <figure class="effect-layla">
+                                    <a
+                                        class="fancybox-buttons"
+                                        data-fancybox-group="button"
+                                        href="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img4.jpg"
+                                        title="Photography Ttile 3"
+                                    >
+                                        <img
+                                            src="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img4.jpg"
+                                            alt=""
+                                        />
+                                    </a>
+                                </figure>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="photo_grid">
+                                <figure class="effect-layla">
+                                    <a
+                                        class="fancybox-buttons"
+                                        data-fancybox-group="button"
+                                        href="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img4.jpg"
+                                        title="Photography Ttile 4"
+                                    >
+                                        <img
+                                            src="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img4.jpg"
+                                            alt=""
+                                        />
+                                    </a>
+                                </figure>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="photo_grid">
+                                <figure class="effect-layla">
+                                    <a
+                                        class="fancybox-buttons"
+                                        data-fancybox-group="button"
+                                        href="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img2.jpg"
+                                        title="Photography Ttile 5"
+                                    >
+                                        <img
+                                            src="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img2.jpg"
+                                            alt=""
+                                        />
+                                    </a>
+                                </figure>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="photo_grid">
+                                <figure class="effect-layla">
+                                    <a
+                                        class="fancybox-buttons"
+                                        data-fancybox-group="button"
+                                        href="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img3.jpg"
+                                        title="Photography Ttile 6"
+                                    >
+                                        <img
+                                            src="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/photograph_img3.jpg"
+                                            alt=""
+                                        />
+                                    </a>
+                                </figure>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="single_post_content">
+                    <h2><span>Xorij</span></h2>
+                    <div class="single_post_content_left">
+                        <ul class="business_catgnav">
+                            {% for post in w_posts %} {% if forloop.first %}
+                            <li>
+                                <figure class="bsbig_fig wow fadeInDown">
+                                    <a class="featured_img" href="{{post.get_absolute_url}}">
+                                        <img src="{{post.image.url}}" alt="" />
+                                        <span class="overlay"></span>
+                                    </a>
+                                    <figcaption>
+                                        <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+                                    </figcaption>
+                                    <p>{{post.body|truncatewords:50}}</p>
+                                    <br />
+                                </figure>
+                            </li>
+                            {% endif %} {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="single_post_content_right">
+                        <ul class="spost_nav">
+                            {% for post in w_posts %}<!---->
+                            {% if forloop.counter is not 1%}
+                            <li>
+                                <div class="media wow fadeInDown">
+                                    <a href="{{post.get_absolute_url}}" class="media-left">
+                                        <img alt="" src="{{post.image.url}}" />
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="{{post.get_absolute_url}}" class="catg_title"> {{post.title}}</a>
+                                        <br />
+                                        <span
+                                            >Ko'rilganlar soni:
+                                            <i class="fa fa-eye" aria-hidden="true"> {%get_hit_count for post%}</i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endif %} {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <aside class="right_content">
+                <div class="single_sidebar">
+                    <h2><span>Mashhur yangiliklar</span></h2>
+                    <ul class="spost_nav">
+                        {% for post in local_posts %}
+                        <li>
+                            <div class="media wow fadeInDown">
+                                <a href="pages/single_page.html" class="media-left">
+                                    <img alt="" src="{{post.image.url}}" />
+                                </a>
+                                <div class="media-body">
+                                    <a href="pages/single_page.html" class="catg_title"> {{post.title}}</a>
+                                    <br />
+                                    <span
+                                        >Ko'rilganlar soni:
+                                        <i class="fa fa-eye" aria-hidden="true"> {%get_hit_count for post%}</i>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="single_sidebar">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#video" aria-controls="profile" role="tab" data-toggle="tab">Video</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#comments" aria-controls="messages" role="tab" data-toggle="tab">Comments</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="category">
+                            <ul>
+                                {% for i in categories %}
+                                <li class="cat-item">
+                                    <a href="#">{{i.name}}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="video">
+                            <div class="vide_area">
+                                <iframe
+                                    width="100%"
+                                    height="250"
+                                    src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage"
+                                    frameborder="0"
+                                    allowfullscreen
+                                ></iframe>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="comments">
+                            <ul class="spost_nav">
+                                {% for post in w_posts %}
+                                <!---->
+                                {% if forloop.counter %}
+                                <li>
+                                    <div class="media wow fadeInDown">
+                                        <a href="pages/single_page.html" class="media-left">
+                                            <img alt="" src="{{post.image.url}}" />
+                                        </a>
+                                        <div class="media-body">
+                                            <a href="pages/single_page.html" class="catg_title"> {{post.title}}</a>
+                                            <br />
+                                            <span>
+                                                Ko'rilganlar soni:
+                                                <i class="fa fa-eye" aria-hidden="true"> {%get_hit_count for post%}</i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endif %} {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="single_sidebar wow fadeInDown">
+                    <h2><span>Sponsor</span></h2>
+                    <a class="sideAdd" href="#"
+                        ><img
+                            src="https://www.free-css.com/assets/files/free-css-templates/preview/page203/newsfeed/images/add_img.jpg"
+                            alt=""
+                    /></a>
+                </div>
+                <div class="single_sidebar wow fadeInDown">
+                    <h2><span>Barchasi</span></h2>
+                    <select class="catgArchive">
+                        {% for i in categories %}
+                        <option>{{i.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="single_sidebar wow fadeInDown">
+                    <h2><span>Links</span></h2>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Rss Feed</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Life &amp; Style</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock content %}

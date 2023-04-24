@@ -1,0 +1,28 @@
+{% extends 'blog/post/pages/single_base.html' %}
+<!---->
+{% block title %} Xorij {% endblock title%}<!---->
+{% block firstpost %}{% for post in first_posts %}
+<li>
+    <div class="media wow fadeInDown">
+        <a href="{{post.get_absolute_url}}" class="media-left">
+            <img alt="" src="{{post.image.url}}" />
+        </a>
+        <div class="media-body">
+            <span>{{post.created}}</span>
+            <a href="{{post.get_absolute_url}}" class="catg_title"> {{post.title|truncatewords:7}}</a>
+        </div>
+    </div>
+</li>
+{% endfor %} {% endblock firstpost %} {% block secondpost %} {% for post in second_posts %}
+<li>
+    <div class="media wow fadeInDown">
+        <a href="{{post.get_absolute_url}}" class="media-left">
+            <img alt="" src="{{post.image.url}}" />
+        </a>
+        <div class="media-body">
+            <span>{{post.created}}</span>
+            <a href="{{post.get_absolute_url}}" class="catg_title"> {{post.title|truncatewords:7}}</a>
+        </div>
+    </div>
+</li>
+{% endfor %}{% endblock secondpost %}
