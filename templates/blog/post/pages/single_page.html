@@ -21,7 +21,7 @@
                     </ol>
                     <h1>{{post.title}}</h1>
                     <div class="post_commentbox">
-                        <a href="#"><i class="fa fa-user"></i>Wpfreeware</a>
+                        <a href="{% url 'blog:share' post.id %}"><i class="fa fa-user"></i>Share this post</a>
                         <span><i class="fa fa-calendar"></i>{{post.created}}</span>
                         <a href="#"><i class="fa fa-tags"></i>{{post.category.name}}</a>
                         <span>

@@ -9,6 +9,8 @@ pillow = "*"
 modeltranslation = "*"
 django-modeltranslation = "*"
 django-hitcount = "*"
+django-taggit = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

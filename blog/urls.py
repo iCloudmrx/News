@@ -3,7 +3,7 @@ from .views import (post_404, post_contact,
                     post_detail, post_index, localView,
                     admin_page, ContactView, searchposts,
                     aboutListView, xorijView, sportView,
-                    texView, SearchResultsView
+                    texView, SearchResultsView, post_share
                     )
 
 app_name = 'blog'
@@ -20,5 +20,6 @@ urlpatterns = [
     path('Xorij/', xorijView, name='xorij'),
     path('Sport/', sportView, name='sport'),
     path('Texnologiya/', texView, name='texno'),
-    path('search/', SearchResultsView.as_view(), name='search_results')
+    path('search/', SearchResultsView.as_view(), name='search_results'),
+    path('<int:post_id>/share/', post_share, name='share')
 ]
