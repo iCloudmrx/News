@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 INSTALLED_APPS = [
     'accounts',
     'django.contrib.admin',
-    # 'modeltranslation',
+    #'modeltranslation',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

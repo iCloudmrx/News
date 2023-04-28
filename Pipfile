@@ -6,11 +6,11 @@ name = "pypi"
 [packages]
 django = "*"
 pillow = "*"
-modeltranslation = "*"
-django-modeltranslation = "*"
 django-hitcount = "*"
 django-taggit = "*"
 psycopg2-binary = "*"
+django-modeltranslation = "*"
+gunicorn = "*"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "18500df163384ac7169f630959596920d6b668269083c25da5aa9ed545dadf37"
+            "sha256": "88739f407cef29b8870b9ad5855b8cdae33ddff2c7ed463d51ec23ccd97f1459"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -31,13 +31,6 @@
             ],
             "index": "pypi",
             "version": "==4.2"
-        },
-        "django-cuser": {
-            "hashes": [
-                "sha256:0d71bc8c4e48a452c7d3f86587b2f098ea30ff644d03bf193eba88302dd47060",
-                "sha256:bf5c3b4f7f4c9fd583f81c3ef16e5ba9e819c70aa1f6a5e8452c784c0a7297ec"
-            ],
-            "version": "==2017.3.16"
         },
         "django-etc": {
             "hashes": [
@@ -70,19 +63,13 @@
             "index": "pypi",
             "version": "==3.1.0"
         },
-        "django-tinymce": {
+        "gunicorn": {
             "hashes": [
-                "sha256:6f4f6227c2c608052081a436a1e3054c441caae24c9e0c8c3010536e24749e29",
-                "sha256:da5732413f51cf854352e3148f06f170b59d95a6c6a43fd9f7ccfdd1849f4bf9"
-            ],
-            "version": "==3.6.1"
-        },
-        "modeltranslation": {
-            "hashes": [
-                "sha256:6b13273ea51e36cccecf32ea87299f7ef19a741222b6d0cf3753870fa5f754bc"
+                "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e",
+                "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"
             ],
             "index": "pypi",
-            "version": "==0.25"
+            "version": "==20.1.0"
         },
         "pillow": {
             "hashes": [
@@ -223,6 +210,14 @@
             ],
             "index": "pypi",
             "version": "==2.9.6"
+        },
+        "setuptools": {
+            "hashes": [
+                "sha256:23aaf86b85ca52ceb801d32703f12d77517b2556af839621c641fca11287952b",
+                "sha256:f104fa03692a2602fa0fec6c6a9e63b6c8a968de13e17c026957dd1f53d80990"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==67.7.2"
         },
         "sqlparse": {
             "hashes": [
