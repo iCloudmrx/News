@@ -19,17 +19,11 @@ from hitcount.views import HitCountMixin
 def post_index(request):
     last_posts = Post.published.all().order_by('-publish')[:5]
     local_posts = Post.published.all().order_by(
-        '-publish').filter(category__name='Mahalliy')[1:6]
-    local_post = Post.published.order_by(
-        '-publish').filter(category__name='Mahalliy')[0]
+        '-publish').filter(category__name='Mahalliy')[:6]
     sport_posts = Post.published.all().order_by(
-        '-publish').filter(category__name='Sport')[1:6]
-    sport_post = Post.published.order_by(
-        '-publish').filter(category__name='Sport')[0]
+        '-publish').filter(category__name='Sport')[:6]
     tex_posts = Post.published.all().order_by(
-        '-publish').filter(category__name='Texnologiya')[1:6]
-    tex_post = Post.published.order_by(
-        '-publish').filter(category__name='Texnologiya')[0]
+        '-publish').filter(category__name='Texnologiya')[:6]
     world_posts = Post.published.all().order_by(
         '-publish').filter(category__name='Xorij')[:6]
     categories = Category.objects.all()
@@ -39,11 +33,8 @@ def post_index(request):
                       'last_posts': last_posts,
                       'categories': categories,
                       'local_posts': local_posts,
-                      'local_post': local_post,
                       'sport_posts': sport_posts,
-                      'sport_post': sport_post,
                       'tex_posts': tex_posts,
-                      'tex_post': tex_post,
                       'w_posts': world_posts,
                   })
 
