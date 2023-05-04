@@ -11,6 +11,7 @@ django-taggit = "*"
 psycopg2-binary = "*"
 django-modeltranslation = "*"
 gunicorn = "*"
+psycopg2 = "*"
 
 [dev-packages]
 

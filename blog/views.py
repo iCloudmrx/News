@@ -135,13 +135,21 @@ class ContactView(LoginRequiredMixin, TemplateView):
             'form': form,
         })
 
+from django.core.mail import send_mail
 @csrf_protect
 @login_required
 def contactFuncView(request):
     posts = Post.published.all().order_by('-publish')[:5]
     if request.method == 'POST':
         form = ContactForm(request.POST)
+        name = form.cleaned_data['name']
+        email = form.cleaned_data['email']
+        subject = form.cleaned_data['message']
+        message = f'Xabar yuborgan shaxs: {name}\n Xabar: {subject}\n Email address: {email}'
+        send_mail(name, message, email, ['newsfeed.uz@gmail.com'], fail_silently=False)
+        print('Xabar ketdi')
         if form.is_valid():
+
             form.save()
     return render(request, 'blog/post/pages/contact.html', {
         'form': form,
