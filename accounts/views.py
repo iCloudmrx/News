@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
+from  django.views.decorators.csrf import csrf_protect
 
 from accounts.models import Profile
 from .forms import *
@@ -15,12 +16,12 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib import messages
 
-
+@csrf_protect
 def signUpPage(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            new_user = form.save()
+            new_user = form.save(commit=False)
             new_user.save()
             Profile.objects.create(user=new_user)
             messages.success(request, 'Registration successful.')
@@ -32,13 +33,13 @@ def signUpPage(request):
         'form': form
     })
 
-
+@csrf_protect
 class SignUpView(CreateView):
     success_url = reverse_lazy('accounts:login')
     template_name = 'account/signup.html'
     form_class = UserCreationForm
 
-
+@csrf_protect
 def loginPage(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -81,7 +82,7 @@ def logout_user(request):
     messages.success(request, "Logged out successfully!")
     return redirect("blog:post_index")
 
-
+@csrf_protect
 def user_edit(request):
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user, data=request.POST)
@@ -103,6 +104,7 @@ def user_edit(request):
 
 
 class EditUserView(LoginRequiredMixin, View):
+    @csrf_protect
     def get(self, request):
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(
@@ -112,6 +114,7 @@ class EditUserView(LoginRequiredMixin, View):
             'profile_form': profile_form
         })
 
+    @csrf_protect
     def post(self, request):
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(

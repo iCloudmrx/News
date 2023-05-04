@@ -1,3 +1,5 @@
+from django.views.decorators.csrf import csrf_protect
+
 from .forms import EmailPostForm
 from django.core.mail import send_mail
 from django.db.models import Q
@@ -38,7 +40,7 @@ def post_index(request):
                       'w_posts': world_posts,
                   })
 
-
+@csrf_protect
 @login_required
 def post_contact(request):
     form = ContactForm(request.POST or None)
@@ -114,16 +116,17 @@ def post_detail(request, year, month, day, post):
                       'hit_count': {'pk': hitcount.pk}
                   })
 
-
 class ContactView(LoginRequiredMixin, TemplateView):
     form = ContactForm()
 
+    @csrf_protect
     def get(self, request, *args, **kwargs):
         form = ContactForm()
         return render(request, 'blog/post/pages/contact.html', {
             'form': form,
         })
 
+    @csrf_protect
     def post(self, request):
         form = ContactForm(request.POST)
         if form.method == 'POST' and form.is_valid():
@@ -132,7 +135,7 @@ class ContactView(LoginRequiredMixin, TemplateView):
             'form': form,
         })
 
-
+@csrf_protect
 @login_required
 def contactFuncView(request):
     posts = Post.published.all().order_by('-publish')[:5]
@@ -250,7 +253,7 @@ def texView(request):
                       'posts': posts
                   })
 
-
+@csrf_protect
 def post_share(request, post_id):
     post = get_object_or_404(Post, id=post_id, status=Post.Status.Published)
     sent = False

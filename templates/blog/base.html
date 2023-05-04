@@ -41,6 +41,27 @@
                                     <li>
                                         <a href="{% url 'blog:contact' %}">Contact</a>
                                     </li>
+                                    {% if user.is_authenticated %}
+                                        <li>
+                                            <a href="{% url 'accounts:dashboard' %}" style="color: white" class="top_nav"
+                                        >{{user.username}}</a
+                                    >
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'accounts:logout' %}" style="color: white" class="top_nav"
+                                        >Log Out</a
+                                    >
+                                        </li>
+                                    {% else %}
+                                        <li>
+                                            <a style="color: white" href="{% url 'accounts:login' %}">Login</a>
+                                        </li>
+                                        <li>
+                                            <a style="color: white" class="nav-item nav-link" href="{% url 'accounts:signup' %}">
+                                        Sign up <i class="fas fa-user-plus"></i>
+                                    </a>
+                                        </li>
+                                    {% endif %}
                                    <li>
 <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
     <input name="next" type="hidden" value="{{ redirect_to }}">
@@ -60,27 +81,6 @@
                                 </ul>
                             </div>
                             <div class="header_top_right">
-                                {% if user.is_authenticated %}
-                                <p>
-                                    <a href="{% url 'accounts:dashboard' %}" style="color: white" class="top_nav"
-                                        >{{user.username}}</a
-                                    >
-                                </p>
-                                <p>
-                                    <a href="{% url 'accounts:logout' %}" style="color: white" class="top_nav"
-                                        >Log Out</a
-                                    >
-                                </p>
-                                {% else %}
-                                <p>
-                                    <a style="color: white" href="{% url 'accounts:login' %}">Login</a>
-                                </p>
-                                <p>
-                                    <a style="color: white" class="nav-item nav-link" href="{% url 'accounts:signup' %}">
-                                        Sign up <i class="fas fa-user-plus"></i>
-                                    </a>
-                                </p>
-                                {% endif %}
                                 <p style="color: white" id="test"></p>
    <script>
     const d = new Date(year,month,day);
