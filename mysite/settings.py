@@ -26,10 +26,19 @@ SECRET_KEY = 'django-insecure-*(9@j88^o@x=)&ph91!f6j)zrkj$a20e1j!7q%zgldtn!ovo4@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.railway.app','127.0.0.1']
 
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://newsfeed.up.railway.app/',
+    'http://www.<domain.com>'
+]
 
 # Application definition
 

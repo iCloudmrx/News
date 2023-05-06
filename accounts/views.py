@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 from  django.views.decorators.csrf import csrf_protect
+from django.template import RequestContext
 
 from accounts.models import Profile
 from .forms import *
